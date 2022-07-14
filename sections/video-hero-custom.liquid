@@ -1,0 +1,74 @@
+<script>
+$( document ).ready(function() {
+ if ($(window).width() < 960) {
+   $('.hidden-sm').attr('src',$('.hidden-sm').data('mobile'));
+   $('.hidden-sm')[0].load();
+}
+else {
+}
+});  
+</script>
+
+<div class="page-width fullpage relative videosection">
+<video class="hidden-sm" data-mobile="{{section.settings.videomob}}" disablepictureinpicture="" muted="" loop="" autoplay playsinline="" disableremoteplayback="" src="{{section.settings.videodesc}}" poster="https://scufgaming.com/media/prismic/5fab5b18-4c71-4eb8-b86f-2473cd9ae0ec_WEB22_001_MayJune_Miami_HP_hero1_dt_2880x1666.jpg" preload="none">
+</video>
+
+<div class="video-container">
+  <h2 class="customheading">{{section.settings.heading}}</h2>
+  <a href="{{section.settings.link}}" class="btn">{{section.settings.linktext}}</a>
+  
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video PurplePanda",
+  "tag": "section",
+  "settings": [
+{
+  "type": "url",
+  "id": "videodesc",
+  "label": "Video Desktop"
+},
+{
+  "type": "image_picker",
+  "id": "poster",
+  "label": "Poster"
+},
+{
+  "type": "url",
+  "id": "videomob",
+  "label": "Video Mobile"
+},
+{
+  "type": "text",
+  "id": "heading",
+  "label": "Überschrift"
+},
+{
+  "type": "text",
+  "id": "linktext",
+  "label": "Link-Text"
+},
+
+{
+  "type": "url",
+  "id": "link",
+  "label": "CTA Button Link"
+}
+  ],
+  "blocks": [
+  ],
+  "presets": [
+    {
+      "name": "Video - PurplePanda"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

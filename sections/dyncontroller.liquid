@@ -1,0 +1,160 @@
+<script>
+    function getcontroller(handle){
+jQuery.getJSON(window.Shopify.routes.root + 'products/'+handle+'.js', function(product) {
+} ).then(response => {
+  //console.log('Done');
+  var title = response.title.replace('PS5 Controller','').replace('Koalacustomz','').trim();
+  var img = response.featured_image;
+  var price = (response.price/100).toFixed(2)+" EUR";
+  //var link = response.id;
+  var url =response.url;
+ 	
+  
+  $('.dynimg-cover').attr('src',img);
+  $('[data-dynprice]').text(price);
+ $('[data-dynheader]').text(title);
+$('.hiddenbtn').attr('href',url);
+ $('.hiddenbtn').show(); 
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
+    };
+
+  
+  
+$( document ).ready(function() {
+$( ".dyncolor" ).on( "click", function() {
+ 
+$('.dyncolor').removeClass('activecolor');
+$(this).addClass('activecolor');
+var handle = $(this).data('variant');
+getcontroller(handle);
+});
+});  
+</script>
+
+
+
+
+
+<style>
+
+
+  @media only screen and (max-width: 740px) {
+
+  }
+  
+  
+</style>
+
+<div class="dyn-contr page-width fullpage addmargin" style="background-image: url('{{section.settings.image | img_url: '1000x'}}')">
+<div class="dyncontent">
+  <div class="dyncontrols">
+    
+    <div class="dyntext">
+    <h1 data-dyntitle data-dynheader class="customheading highlight">Chinese Night</h1>
+    <h2 class="">PS5 Controller</h2>
+      <div class="colorcontrol">Designs:
+        {%for block in section.blocks%}
+        {% assign product = all_products[block.settings.product] %}
+        {%if block.type == 'controller'%}
+        <div class="dyncolor" data-variant="{{product.handle}}" style="background: {{block.settings.color}};"></div>
+        {%endif%}
+        {%endfor%}
+      </div>
+      <p data-dynprice class="dynprice">190,99 EUR</p>
+      <a class="btn hiddenbtn" style="display:none;" href="/collections/controller">Zum Produkt<i class="fa-solid fa-angle-right"></i></a>
+    </div>
+    
+
+  </div>
+  
+  <div class="dynimg">
+  <img class="dynimg-cover" src="{{section.settings.image2 | img_url: "master"}}">  
+   <div style="display:none;" class="rangeholder">
+     <input type="range">
+    </div>
+  </div>
+  
+  </div>
+
+</div>
+
+
+{% schema %}
+  {
+    "name": "Dynamic Contr Section",
+    "settings": [
+    {
+      "type": "text",
+      "id": "h1",
+      "label": "H1 Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "p",
+      "label": "Subtitle"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "Background Color"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "link",
+      "label": "Button Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background-Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Image"
+    }
+],
+"blocks":[
+     {
+       "name": "Controller",
+       "type": "controller",
+       "settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Swatch"
+},
+{
+"type": "product",
+"id": "product",
+"label": "Controller"
+},
+{
+"type": "color",
+"id": "color",
+"label": "Swatch-Farbe"
+}
+       ]
+     }
+],
+"presets":[
+  {
+    "name": "Dynamic Controller Section"
+  }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
