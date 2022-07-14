@@ -1,0 +1,71 @@
+<div class="page-width story addmargin">
+<div class="story-left">
+  <div class="left">
+    <h2 class="customheading bigger">{{section.settings.h1}}</h2>
+    <p >{{section.settings.paragraph}} </p>
+    {%if section.settings.url%}
+    <a class="btn ctabtn" href="{{section.settings.url}}">{{section.settings.linktext}}</a>
+    {%endif%}
+  </div>
+  <div class="right relative" style="background-image: url('{{section.settings.image2 | img_url: '800x'}} ');">
+  <img src="{{section.settings.image | img_url: '800x'}}">
+
+  </div>
+
+</div>
+  
+  
+</div>
+
+
+{% schema %}
+{
+  "name": "Story - Image Left",
+  "tag": "section",
+  "settings": [
+{
+  "type": "text",
+  "id": "h1",
+  "label": "Überschrift"
+},
+{
+  "type": "textarea",
+  "id": "paragraph",
+  "label": "Fließtext"
+},
+{
+  "type": "image_picker",
+  "id": "image",
+  "label": "Bild - Position links"
+},
+{
+  "type": "image_picker",
+  "id": "image2",
+  "label": "Bild - BG"
+},
+{
+  "type": "url",
+  "id": "url",
+  "label": "CTA-URL"
+},
+{
+  "type": "text",
+  "id": "linktext",
+  "label": "Link-Text"
+}
+  ],
+  "blocks": [
+  ],
+  "presets": [
+    {
+      "name": "CTA - Section IMG Left"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
